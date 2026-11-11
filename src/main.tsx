@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, MemoryRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './index.css'
 import { StoreProvider } from './lib/store'
 import { Toaster } from './components/ui'
@@ -13,10 +13,13 @@ import Agenda from './pages/admin/Agenda'
 import { ClientDetail, ClientsList } from './pages/admin/Clients'
 import { AdminAnamneses, AdminFinance, AdminNotifications, AdminPackages, AdminReports, AdminServices, AdminSettings, AdminWaitlist } from './pages/admin/more'
 
+// No artifact do Claude o hash da URL é reservado; lá a navegação fica em memória.
+const Router = import.meta.env.VITE_ARTIFACT ? MemoryRouter : HashRouter
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <StoreProvider>
-      <HashRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/entrar" element={<Login key="cliente" />} />
@@ -50,7 +53,7 @@ createRoot(document.getElementById('root')!).render(
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </HashRouter>
+      </Router>
       <Toaster />
     </StoreProvider>
   </StrictMode>,
