@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-linen-100 text-bark-900 font-sans antialiased; }
+  h1, h2, h3 { @apply font-display text-bark-900; letter-spacing: -0.01em; }
+}
+
+@layer components {
+  .card { @apply bg-white rounded-2xl shadow-soft border border-linen-200; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-sage-600 text-white hover:bg-sage-700; }
+  .btn-secondary { @apply btn bg-linen-100 text-bark-700 hover:bg-linen-200 border border-linen-300; }
+  .btn-ghost { @apply btn text-bark-700 hover:bg-linen-100; }
+  .btn-danger { @apply btn bg-white text-red-700 border border-red-200 hover:bg-red-50; }
+  .input { @apply w-full rounded-xl border border-linen-300 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-sage-500 focus:ring-4 focus:ring-sage-100 placeholder:text-bark-500/50; }
+  .label { @apply block text-sm font-medium text-bark-700 mb-1.5; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold; }
+  .table-base { @apply w-full text-sm; }
+  .table-base th { @apply text-left text-xs font-semibold uppercase tracking-wide text-bark-500 px-3 py-2.5 border-b border-linen-200 whitespace-nowrap; }
+  .table-base td { @apply px-3 py-3 border-b border-linen-100 align-middle; }
+}
+
+.fade-in { animation: fadeIn .35s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
